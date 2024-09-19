@@ -8,7 +8,7 @@ Ce projet permet de récupérer des données météo en temps réel et de les en
 
 Avant de déployer le projet, vous devez configurer les variables d'environnement pour le broker Kafka et les API météo.
 
-Créez un fichier **`.env`** à la racine du projet (ou configurez les valeurs dans `environment.py`) avec les informations suivantes :
+Créez un fichier **`.env`** dans le répertoire METEO_KAFKA_STREAMLIT (ou configurez les valeurs dans `environment.py`) avec les informations suivantes :
 
 ```env
 WEATHER_API_KEY = "votre_clé_API"

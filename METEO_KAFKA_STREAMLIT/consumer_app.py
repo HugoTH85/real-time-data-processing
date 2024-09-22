@@ -1,8 +1,8 @@
 import json
 from kafka import KafkaConsumer
 import streamlit as st
-from environment import KAFKA_BROKER, KAFKA_TOPIC
 from dashboards import dashboard
+from environment import *
 
 
 # Process weather data from kafka message

@@ -1,9 +1,9 @@
 import json
 from kafka import KafkaProducer
 import streamlit as st
-from environment import KAFKA_BROKER, KAFKA_TOPIC
 from weather import fetch_weather_data
 from dashboards import dashboard
+from environment import *
 
 
 # Kafka producer

@@ -26,7 +26,7 @@ if __name__ == '__main__':
     dashboard("producer")
 
     # Display input field
-    location = st.text_input('Location')
+    location = st.text_input('Location', autocomplete="off")
 
     # Display call-to-action button
     action = st.button('Produce weather data to Kafka')

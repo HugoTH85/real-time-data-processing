@@ -5,11 +5,11 @@ from environment import WEATHER_API_KEY
 # Define a function to fetch location key from AccuWeather API
 def fetch_location_key(location: str):
     params = {
-        "apikey": WEATHER_API_KEY,
+        "key": WEATHER_API_KEY,
         "q": location,
     }
     # Construct the API URL
-    loc_api = f"http://dataservice.accuweather.com/locations/v1/cities/search"
+    loc_api = "http://api.weatherapi.com/v1/search.json"
 
     # Send an API request
     response = requests.get(loc_api, params=params)
@@ -24,18 +24,18 @@ def fetch_location_key(location: str):
 
 # Define a function to fetch weather data from AccuWeather API
 def fetch_weather_data(location: str):
+
     loc_api_data = fetch_location_key(location)
 
     if loc_api_data:
-        location_key = loc_api_data[0]["Key"]
-        loc_name = loc_api_data[0]["EnglishName"]
-        country = loc_api_data[0]["Country"]["EnglishName"]
+        loc_name = loc_api_data[0]["name"]
 
         params = {
-            "apikey": WEATHER_API_KEY,
-            "details": "true",
+            "key": WEATHER_API_KEY,
+            "q": loc_name,
+            "aqi": "no",
         }
-        w_api = f"http://dataservice.accuweather.com/forecasts/v1/hourly/1hour/{location_key}"
+        w_api = "http://api.weatherapi.com/v1/current.json"
 
         # Send another API request
         w_response = requests.get(w_api, params=params)
@@ -47,26 +47,42 @@ def fetch_weather_data(location: str):
 
             # Extract relevant weather data
             weather_data = {
-                "location": loc_name,
-                "country": country,
-                "temperature": data[0]["Temperature"]["Value"],
-                "temperature_unit": data[0]["Temperature"]["Unit"],
-                "realfeel": data[0]["RealFeelTemperature"]["Value"],
-                "realfeel_unit": data[0]["RealFeelTemperature"]["Unit"],
-                "realfeel_status": data[0]["RealFeelTemperature"]["Phrase"],
-                "precipitation": data[0]["PrecipitationProbability"],
-                "thunder": data[0]["ThunderstormProbability"],
-                "rain": data[0]["RainProbability"],
-                "snow": data[0]["SnowProbability"],
-                "wind": data[0]["Wind"]["Speed"]["Value"],
-                "wind_unit": data[0]["Wind"]["Speed"]["Unit"],
-                "wind_dir": str(data[0]["Wind"]["Direction"]["Degrees"]) + " " + data[0]["Wind"]["Direction"]["English"],
-                "humidity": data[0]["RelativeHumidity"],
-                "indoor": data[0]["IndoorRelativeHumidity"],
-                "uvindex": data[0]["UVIndex"],
-                "weather": data[0]["IconPhrase"],
-                "icon": data[0]["WeatherIcon"],
-                "datetime": data[0]["DateTime"]
+                "location_name": data['location']['name'],
+                "region": data['location']['region'],
+                "country": data['location']['country'],
+                "latitude": data['location']['lat'],
+                "longitude": data['location']['lon'],
+                "timezone": data['location']['tz_id'],
+                "localtime": data['location']['localtime'],
+                "last_updated": data['current']['last_updated'],
+                "temperature_c": data['current']['temp_c'],
+                "temperature_f": data['current']['temp_f'],
+                "is_day": data['current']['is_day'],
+                "condition_text": data['current']['condition']['text'],
+                "condition_icon": data['current']['condition']['icon'],
+                "wind_mph": data['current']['wind_mph'],
+                "wind_kph": data['current']['wind_kph'],
+                "wind_degree": data['current']['wind_degree'],
+                "wind_dir": data['current']['wind_dir'],
+                "pressure_mb": data['current']['pressure_mb'],
+                "pressure_in": data['current']['pressure_in'],
+                "precipitation_mm": data['current']['precip_mm'],
+                "precipitation_in": data['current']['precip_in'],
+                "humidity": data['current']['humidity'],
+                "cloud": data['current']['cloud'],
+                "feelslike_c": data['current']['feelslike_c'],
+                "feelslike_f": data['current']['feelslike_f'],
+                "windchill_c": data['current']['windchill_c'],
+                "windchill_f": data['current']['windchill_f'],
+                "heatindex_c": data['current']['heatindex_c'],
+                "heatindex_f": data['current']['heatindex_f'],
+                "dewpoint_c": data['current']['dewpoint_c'],
+                "dewpoint_f": data['current']['dewpoint_f'],
+                "visibility_km": data['current']['vis_km'],
+                "visibility_miles": data['current']['vis_miles'],
+                "uv_index": data['current']['uv'],
+                "gust_mph": data['current']['gust_mph'],
+                "gust_kph": data['current']['gust_kph']
             }
             return weather_data
 

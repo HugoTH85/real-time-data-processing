@@ -32,7 +32,9 @@ services:
 
   # Service Producteur Kafka
   producer:
-    build: ./METEO_KAFKA_STREAMLIT/
+    build: 
+      context: ./METEO_KAFKA_STREAMLIT
+      dockerfile: DOCKERFILE/Producer/Dockerfile
     restart: "no"
     depends_on:
       - kafka
@@ -42,7 +44,9 @@ services:
 
   # Service Consommateur Kafka
   consumer:
-    build: ./METEO_KAFKA_STREAMLIT/
+    build: 
+      context: ./METEO_KAFKA_STREAMLIT
+      dockerfile: DOCKERFILE/Consumer/Dockerfile
     restart: "no"
     depends_on:
       - kafka

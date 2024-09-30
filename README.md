@@ -4,17 +4,17 @@ Ce projet permet de récupérer des données météo en temps réel et de les en
 
 ## Structure du projet
 
-## 1. Configuration du fichier `.env`
+## 1. Configuration du fichier `.yml`
 
 Avant de déployer le projet, vous devez configurer les variables d'environnement pour le broker Kafka et les API météo.
 
-Créez un fichier **`.env`** dans le répertoire METEO_KAFKA_STREAMLIT (ou configurez les valeurs dans `environment.py`) avec les informations suivantes :
+Créez un fichier **`env.yml`** dans le répertoire METEO_KAFKA_STREAMLIT (ou configurez les valeurs dans `environment.py`) avec les informations suivantes :
 
-```env
-WEATHER_API_KEY = "votre_clé_API"
-KAFKA_BROKER = "kafka:29092"
-KAFKA_TOPIC = "weather_data"
-KAFKA_GROUP_ID = "weather_consumer_group"
+```yml
+WEATHER_API_KEY : "apiKey"                  # A retrouver sur  [weatherapi](https://www.weatherapi.com)    
+KAFKA_BROKER : "kafka:29092"                # Adresse du serveur Kafka
+KAFKA_TOPIC : "weather_data"                # Nom du topic Kafka
+KAFKA_GROUP_ID : "weather_consumer_group"   # Nom de l'identifiant de groupe Kafka
 ```
 
 Vous pourrez créer une clé API Weather en allant sur [https://www.weatherapi.com/](https://www.weatherapi.com/), en vous créant un compte et en générant une clé API.

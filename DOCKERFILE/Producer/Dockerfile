@@ -8,13 +8,12 @@ RUN apt-get update && apt-get install -y gcc libc-dev
 WORKDIR /app
 
 # Copier uniquement les fichiers Python dans le répertoire de travail
-COPY ./Services/Weather-Kafka-Streamlit/*.py /app/
+COPY ./Services/Weather-Kafka-Streamlit /app/
 
 # Copier le dossier images dans le répertoire de travail
 COPY ./images /app/images/
 
 COPY ./Services/requirements.txt /app/
-COPY ./Services/Weather-Kafka-Streamlit/env.yml /app/
 
 
 # Installer les dépendances à partir du fichier requirements.txt

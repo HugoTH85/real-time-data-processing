@@ -40,10 +40,6 @@ Pour accéder à ce service : **`localhost:8503`**
 Dans un terminal pointant sur la racine du projet, exécutez la commande :
 
 ```bash
-docker compose up
-```
-Si vous ne souhaitez pas afficher les logs de démarrage des différents conteneurs, exécutez cette commande :
-```bash
 docker compose up -d
 ```
 

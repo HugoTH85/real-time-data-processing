@@ -78,10 +78,10 @@ services:
 
 
   # Service Producteur Kafka
-  producer:
+  producer-weather:
     build: 
       context: .
-      dockerfile: Dockerfiles/Producer/Dockerfile
+      dockerfile: Dockerfiles/Producer-Weather/Dockerfile
     restart: "no"
     depends_on:
       kibana:
@@ -111,6 +111,23 @@ services:
       - "8502:8502"
     volumes:
       - ./Sink-Connectors/mongo-sink-stock.json:/tmp/mongo-sink-stock.json
+    networks:
+      - localnet
+  producer-log:
+    build: 
+      context: .
+      dockerfile: Dockerfiles/Producer-Log/Dockerfile
+    restart: "no"
+    depends_on:
+      kibana:
+        condition: service_healthy
+      kafka:
+        condition: service_started
+    command: sh -c "python kibana.py & streamlit run producer_app.py --server.port 8503 --server.address 0.0.0.0"
+    ports:
+      - "8503:8503"
+    volumes:
+      - ./Sink-Connectors/mongo-sink-log.json:/tmp/mongo-sink-log.json
     networks:
       - localnet
 

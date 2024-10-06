@@ -7,7 +7,7 @@ Ce projet permet de récupérer des données météo, des informations concernan
 ### Configuration du fichier `env.yml`
 
 Vous devez configurer les variables d'environnement pour le broker Kafka et les API météo.
-Créez un fichier **`env.yml`** dans le répertoire **`./Services`** avec les informations suivantes :
+Créez un fichier **`env.yml`** dans le répertoire **`./Services/Producers/`** avec les informations suivantes :
 
 ```yml
 WEATHER_API_KEY : "your_api_key"            # A retrouver sur  [weatherapi](https://www.weatherapi.com)    
@@ -21,18 +21,18 @@ KAFKA_GROUP_ID : "weather_consumer_group"   # Nom de l'identifiant de groupe Kaf
 ### Producer Weather-Kafka-Streamlit
 
 Ce producer permet la génération de données météorologiques d'une ville.
-Les fichiers de configuration du producer se trouve dans le répertoire **`./Services/Weather-Kafka-Streamlit`**.
+Les fichiers de configuration du producer se trouve dans le répertoire **`./Services/Producers/Weather-Kafka-Streamlit`**.
 Pour accéder à ce service : **`localhost:8501`**
 
 ### Producer Stock-Kafka-Streamlit
 
 Ce producer permet la génération de données
-Les fichiers de configuration du producer se trouve dans le répertoire **`./Services/Stock-Kafka-Streamlit`**.
+Les fichiers de configuration du producer se trouve dans le répertoire **`./Services/Producers/Stock-Kafka-Streamlit`**.
 Pour accéder à ce service : **`localhost:8502`**
 
 ### Producer Log-Kafka-Streamlit
 
-Les fichiers de configuration du producer se trouve dans le répertoire **`./Services/Log-Kafka-Streamlit`**.
+Les fichiers de configuration du producer se trouve dans le répertoire **`./Services/Producers/Log-Kafka-Streamlit`**.
 Pour accéder à ce service : **`localhost:8503`**
 
 ### Exécution du projet

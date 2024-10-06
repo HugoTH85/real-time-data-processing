@@ -31,6 +31,7 @@ Pour accéder à ce service : **`localhost:8501`**
 Ce producer permet la génération de données
 Les fichiers de configuration du producer se trouve dans le répertoire **`./Services/Producers/Stock-Kafka-Streamlit`**.
 Pour accéder à ce service : **`localhost:8502`**
+A noter que la clé API "demo" ne fonctionne que pour la date 2009-01 (il vous faudra générer votre propre clé si vous souhaitez tester d'autres dates).
 
 ### Producer Log-Kafka-Streamlit
 

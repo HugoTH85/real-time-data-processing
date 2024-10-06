@@ -2,6 +2,13 @@
 
 Ce projet permet de récupérer des données météo, des informations concernant un nom de domaine sur l'Internet et les données OHLCV du marché américain sur un mois en temps réel et de les envoyer dans Kafka via un producteur, les affiche sur une interface Kibana, tout en consommant ces données via une base de données mongodb, le tout avec une interface graphique développée avec Grafana.
 
+## Membres du projet :
+
+- LORGET Gabriel
+- BOULBEN Guillaume
+- JORRE Alexis
+- TRICOIRE Hugo
+
 ## Structure du projet
 
 ### Configuration du fichier `env.yml`

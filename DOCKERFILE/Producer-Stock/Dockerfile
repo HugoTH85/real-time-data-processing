@@ -15,6 +15,9 @@ COPY ./images /app/images/
 
 COPY ./Services/requirements.txt /app/
 
+COPY ./Services/env.yml /app/
+
+COPY ./Services/*.py /app/
 
 # Installer les dépendances à partir du fichier requirements.txt
 RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt

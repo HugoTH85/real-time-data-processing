@@ -2,15 +2,15 @@
   "version": "7.6.2",
   "objects": [
     {
-      "id": "3f1c0df0-8409-11ef-891c-5db08ab19c9e",
+      "id": "446f6500-8417-11ef-b999-4ddb61db8107",
       "type": "dashboard",
-      "updated_at": "2024-10-06T17:41:05.516Z",
-      "version": "WzIzLDNd",
+      "updated_at": "2024-10-06T19:14:53.903Z",
+      "version": "WzEwLDFd",
       "attributes": {
-        "title": "Table Log",
+        "title": "table Log2",
         "hits": 0,
         "description": "",
-        "panelsJSON": "[{\"embeddableConfig\":{},\"gridData\":{\"h\":15,\"i\":\"aabcf0d1-804e-426f-9431-594ba46158af\",\"w\":24,\"x\":0,\"y\":0},\"panelIndex\":\"aabcf0d1-804e-426f-9431-594ba46158af\",\"version\":\"7.6.2\",\"panelRefName\":\"panel_0\"}]",
+        "panelsJSON": "[{\"version\":\"7.6.2\",\"gridData\":{\"w\":24,\"h\":15,\"x\":0,\"y\":0,\"i\":\"a2f440dd-7146-4904-8d4a-07efb98371d2\"},\"panelIndex\":\"a2f440dd-7146-4904-8d4a-07efb98371d2\",\"embeddableConfig\":{},\"panelRefName\":\"panel_0\"}]",
         "optionsJSON": "{\"hidePanelTitles\":false,\"useMargins\":true}",
         "version": 1,
         "timeRestore": false,
@@ -22,7 +22,7 @@
         {
           "name": "panel_0",
           "type": "visualization",
-          "id": "4c166880-8403-11ef-bb5a-e54f620c2ff4"
+          "id": "3d7189e0-8417-11ef-b999-4ddb61db8107"
         }
       ],
       "migrationVersion": {
@@ -30,13 +30,13 @@
       }
     },
     {
-      "id": "4c166880-8403-11ef-bb5a-e54f620c2ff4",
+      "id": "3d7189e0-8417-11ef-b999-4ddb61db8107",
       "type": "visualization",
-      "updated_at": "2024-10-06T16:51:56.807Z",
-      "version": "WzE0LDJd",
+      "updated_at": "2024-10-06T19:14:42.173Z",
+      "version": "WzksMV0=",
       "attributes": {
-        "title": "Table Log",
-        "visState": "{\"title\":\"Table Log\",\"type\":\"table\",\"params\":{\"perPage\":10,\"showPartialRows\":false,\"showMetricsAtAllLevels\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"showTotal\":false,\"totalFunc\":\"sum\",\"percentageCol\":\"\",\"dimensions\":{\"metrics\":[{\"accessor\":6,\"format\":{\"id\":\"number\"},\"params\":{},\"label\":\"Count\",\"aggType\":\"count\"}],\"buckets\":[{\"accessor\":0,\"format\":{\"id\":\"terms\",\"params\":{\"id\":\"string\",\"otherBucketLabel\":\"Other\",\"missingBucketLabel\":\"Missing\",\"parsedUrl\":{\"origin\":\"http://localhost:5601\",\"pathname\":\"/app/kibana\",\"basePath\":\"\"}}},\"params\":{},\"label\":\"Adresse IP\",\"aggType\":\"terms\"},{\"accessor\":1,\"format\":{\"id\":\"terms\",\"params\":{\"id\":\"string\",\"otherBucketLabel\":\"Other\",\"missingBucketLabel\":\"Missing\",\"parsedUrl\":{\"origin\":\"http://localhost:5601\",\"pathname\":\"/app/kibana\",\"basePath\":\"\"}}},\"params\":{},\"label\":\"Adresse DNS\",\"aggType\":\"terms\"},{\"accessor\":2,\"format\":{\"id\":\"terms\",\"params\":{\"id\":\"string\",\"otherBucketLabel\":\"Other\",\"missingBucketLabel\":\"Missing\",\"parsedUrl\":{\"origin\":\"http://localhost:5601\",\"pathname\":\"/app/kibana\",\"basePath\":\"\"}}},\"params\":{},\"label\":\"Region\",\"aggType\":\"terms\"},{\"accessor\":3,\"format\":{\"id\":\"terms\",\"params\":{\"id\":\"string\",\"otherBucketLabel\":\"Other\",\"missingBucketLabel\":\"Missing\",\"parsedUrl\":{\"origin\":\"http://localhost:5601\",\"pathname\":\"/app/kibana\",\"basePath\":\"\"}}},\"params\":{},\"label\":\"Zone Geo\",\"aggType\":\"terms\"},{\"accessor\":4,\"format\":{\"id\":\"terms\",\"params\":{\"id\":\"string\",\"otherBucketLabel\":\"Other\",\"missingBucketLabel\":\"Missing\",\"parsedUrl\":{\"origin\":\"http://localhost:5601\",\"pathname\":\"/app/kibana\",\"basePath\":\"\"}}},\"params\":{},\"label\":\"Hostname\",\"aggType\":\"terms\"},{\"accessor\":5,\"format\":{\"id\":\"terms\",\"params\":{\"id\":\"string\",\"otherBucketLabel\":\"Other\",\"missingBucketLabel\":\"Missing\",\"parsedUrl\":{\"origin\":\"http://localhost:5601\",\"pathname\":\"/app/kibana\",\"basePath\":\"\"}}},\"params\":{},\"label\":\"mongo_id.keyword: Descending\",\"aggType\":\"terms\"}]}},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"ip_address.keyword\",\"orderBy\":\"_key\",\"order\":\"desc\",\"size\":5,\"otherBucket\":false,\"otherBucketLabel\":\"Other\",\"missingBucket\":false,\"missingBucketLabel\":\"Missing\",\"customLabel\":\"Adresse IP\"}},{\"id\":\"3\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"dns_address.keyword\",\"orderBy\":\"_key\",\"order\":\"desc\",\"size\":5,\"otherBucket\":false,\"otherBucketLabel\":\"Other\",\"missingBucket\":false,\"missingBucketLabel\":\"Missing\",\"customLabel\":\"Adresse DNS\"}},{\"id\":\"4\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"region.keyword\",\"orderBy\":\"1\",\"order\":\"desc\",\"size\":5,\"otherBucket\":false,\"otherBucketLabel\":\"Other\",\"missingBucket\":false,\"missingBucketLabel\":\"Missing\",\"customLabel\":\"Region\"}},{\"id\":\"5\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"zone.keyword\",\"orderBy\":\"_key\",\"order\":\"desc\",\"size\":5,\"otherBucket\":false,\"otherBucketLabel\":\"Other\",\"missingBucket\":false,\"missingBucketLabel\":\"Missing\",\"customLabel\":\"Zone Geo\"}},{\"id\":\"6\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"hostname.keyword\",\"orderBy\":\"_key\",\"order\":\"desc\",\"size\":5,\"otherBucket\":false,\"otherBucketLabel\":\"Other\",\"missingBucket\":false,\"missingBucketLabel\":\"Missing\",\"customLabel\":\"Hostname\"}},{\"id\":\"7\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"mongo_id.keyword\",\"orderBy\":\"1\",\"order\":\"desc\",\"size\":5,\"otherBucket\":false,\"otherBucketLabel\":\"Other\",\"missingBucket\":false,\"missingBucketLabel\":\"Missing\",\"customLabel\":\"Id Base de Donnée\"}}]}",
+        "title": "Table Logg",
+        "visState": "{\"title\":\"Table Logg\",\"type\":\"table\",\"params\":{\"perPage\":10,\"showPartialRows\":false,\"showMetricsAtAllLevels\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"showTotal\":false,\"totalFunc\":\"sum\",\"percentageCol\":\"\",\"dimensions\":{\"metrics\":[{\"accessor\":6,\"format\":{\"id\":\"number\"},\"params\":{},\"label\":\"Count\",\"aggType\":\"count\"}],\"buckets\":[{\"accessor\":0,\"format\":{\"id\":\"terms\",\"params\":{\"id\":\"string\",\"otherBucketLabel\":\"Other\",\"missingBucketLabel\":\"Missing\",\"parsedUrl\":{\"origin\":\"http://localhost:5601\",\"pathname\":\"/app/kibana\",\"basePath\":\"\"}}},\"params\":{},\"label\":\"city.keyword: Descending\",\"aggType\":\"terms\"},{\"accessor\":1,\"format\":{\"id\":\"terms\",\"params\":{\"id\":\"string\",\"otherBucketLabel\":\"Other\",\"missingBucketLabel\":\"Missing\",\"parsedUrl\":{\"origin\":\"http://localhost:5601\",\"pathname\":\"/app/kibana\",\"basePath\":\"\"}}},\"params\":{},\"label\":\"country.keyword: Descending\",\"aggType\":\"terms\"},{\"accessor\":2,\"format\":{\"id\":\"terms\",\"params\":{\"id\":\"string\",\"otherBucketLabel\":\"Other\",\"missingBucketLabel\":\"Missing\",\"parsedUrl\":{\"origin\":\"http://localhost:5601\",\"pathname\":\"/app/kibana\",\"basePath\":\"\"}}},\"params\":{},\"label\":\"hostname.keyword: Descending\",\"aggType\":\"terms\"},{\"accessor\":3,\"format\":{\"id\":\"terms\",\"params\":{\"id\":\"string\",\"otherBucketLabel\":\"Other\",\"missingBucketLabel\":\"Missing\",\"parsedUrl\":{\"origin\":\"http://localhost:5601\",\"pathname\":\"/app/kibana\",\"basePath\":\"\"}}},\"params\":{},\"label\":\"ip_address.keyword: Descending\",\"aggType\":\"terms\"},{\"accessor\":4,\"format\":{\"id\":\"terms\",\"params\":{\"id\":\"string\",\"otherBucketLabel\":\"Other\",\"missingBucketLabel\":\"Missing\",\"parsedUrl\":{\"origin\":\"http://localhost:5601\",\"pathname\":\"/app/kibana\",\"basePath\":\"\"}}},\"params\":{},\"label\":\"region.keyword: Descending\",\"aggType\":\"terms\"},{\"accessor\":5,\"format\":{\"id\":\"terms\",\"params\":{\"id\":\"string\",\"otherBucketLabel\":\"Other\",\"missingBucketLabel\":\"Missing\",\"parsedUrl\":{\"origin\":\"http://localhost:5601\",\"pathname\":\"/app/kibana\",\"basePath\":\"\"}}},\"params\":{},\"label\":\"zone.keyword: Descending\",\"aggType\":\"terms\"}]}},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"city.keyword\",\"orderBy\":\"_key\",\"order\":\"desc\",\"size\":5,\"otherBucket\":false,\"otherBucketLabel\":\"Other\",\"missingBucket\":false,\"missingBucketLabel\":\"Missing\",\"customLabel\":\"City\"}},{\"id\":\"3\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"country.keyword\",\"orderBy\":\"1\",\"order\":\"desc\",\"size\":5,\"otherBucket\":false,\"otherBucketLabel\":\"Other\",\"missingBucket\":false,\"missingBucketLabel\":\"Missing\",\"customLabel\":\"Country\"}},{\"id\":\"4\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"hostname.keyword\",\"orderBy\":\"1\",\"order\":\"desc\",\"size\":5,\"otherBucket\":false,\"otherBucketLabel\":\"Other\",\"missingBucket\":false,\"missingBucketLabel\":\"Missing\",\"customLabel\":\"Hostname\"}},{\"id\":\"5\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"ip_address.keyword\",\"orderBy\":\"1\",\"order\":\"desc\",\"size\":5,\"otherBucket\":false,\"otherBucketLabel\":\"Other\",\"missingBucket\":false,\"missingBucketLabel\":\"Missing\",\"customLabel\":\"Adresse IP\"}},{\"id\":\"6\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"region.keyword\",\"orderBy\":\"1\",\"order\":\"desc\",\"size\":5,\"otherBucket\":false,\"otherBucketLabel\":\"Other\",\"missingBucket\":false,\"missingBucketLabel\":\"Missing\",\"customLabel\":\"Region\"}},{\"id\":\"7\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"zone.keyword\",\"orderBy\":\"_key\",\"order\":\"desc\",\"size\":5,\"otherBucket\":false,\"otherBucketLabel\":\"Other\",\"missingBucket\":false,\"missingBucketLabel\":\"Missing\",\"customLabel\":\"Zone Geo\"}}]}",
         "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
         "description": "",
         "version": 1,
@@ -48,7 +48,7 @@
         {
           "name": "kibanaSavedObjectMeta.searchSourceJSON.index",
           "type": "index-pattern",
-          "id": "0320cae0-83fd-11ef-bb5a-e54f620c2ff4"
+          "id": "962f3d80-8416-11ef-b999-4ddb61db8107"
         }
       ],
       "migrationVersion": {
@@ -56,10 +56,10 @@
       }
     },
     {
-      "id": "0320cae0-83fd-11ef-bb5a-e54f620c2ff4",
+      "id": "962f3d80-8416-11ef-b999-4ddb61db8107",
       "type": "index-pattern",
-      "updated_at": "2024-10-06T16:06:59.265Z",
-      "version": "WzgsMl0=",
+      "updated_at": "2024-10-06T19:10:03.416Z",
+      "version": "WzUsMV0=",
       "attributes": {
         "title": "log_data",
         "timeFieldName": "@timestamp",

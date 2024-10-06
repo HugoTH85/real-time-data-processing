@@ -95,6 +95,24 @@ services:
       - ./Sink-Connectors/mongo-sink-weather.json:/tmp/mongo-sink-weather.json
     networks:
       - localnet
+      
+  producer-stock: 
+    build: 
+      context: .
+      dockerfile: DOCKERFILE/Producer-Stock/Dockerfile
+    restart: "no"
+    depends_on:
+      kibana:
+        condition: service_healthy
+      kafka:
+        condition: service_started
+    command: sh -c "python kibana.py & streamlit run producer_app.py --server.port 8502 --server.address 0.0.0.0"
+    ports:
+      - "8502:8502"
+    volumes:
+      - ./Sink-Connectors/mongo-sink-stock.json:/tmp/mongo-sink-stock.json
+    networks:
+      - localnet
 
 
   

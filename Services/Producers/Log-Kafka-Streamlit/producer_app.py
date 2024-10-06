@@ -60,10 +60,8 @@ def produce_kafka_messages(dns_address):
     if dns_data:
          # Send DNS data to Kafka topic
         producer.send(KAFKA_TOPIC_LOG, dns_data)
-        st.write("DNS data produced to Kafka:", dns_data)
-    # Wait 10 seconds before the next request
-    time.sleep(10)
     producer.close()
+    return 1
 
 if __name__ == '__main__':
     dashboard("producer")

@@ -43,7 +43,7 @@ def produce_kafka_messages(date):
 
     # Close the producer after sending all messages
     producer.close()
-    return 1;
+    return 1
 
 
 if __name__ == '__main__':

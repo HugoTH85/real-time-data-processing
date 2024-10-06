@@ -32,8 +32,5 @@ STOCK_API_KEY = prime_service["STOCK_API_KEY"]
 KAFKA_BROKER = prime_service["KAFKA_BROKER"]
 KAFKA_TOPIC = prime_service["KAFKA_TOPIC"]
 KAFKA_TOPIC_FINANCE = prime_service["KAFKA_TOPIC_FINANCE"]
-KAFKA_GROUP_ID = prime_service["KAFKA_GROUP_ID"]
-
-
-
-
+KAFKA_TOPIC_LOG = prime_service["KAFKA_TOPIC_LOG"]
+LOG_API_KEY = prime_service["LOG_API_KEY"]

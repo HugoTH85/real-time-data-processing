@@ -7,15 +7,17 @@ Ce projet permet de récupérer des données météo, des informations concernan
 ### Configuration du fichier `env.yml`
 
 Vous devez configurer les variables d'environnement pour le broker Kafka et les API météo.
+Rendez-vous sur les sites indiqués pour générer vos propres clés API pour les producers Weather et Log.
 Créez un fichier **`env.yml`** dans le répertoire **`./Services/Producers/`** avec les informations suivantes :
 
 ```yml
-WEATHER_API_KEY : "your_api_key"            # A retrouver sur  [weatherapi](https://www.weatherapi.com)    
+WEATHER_API_KEY : "your_api_key"            # A retrouver sur https://www.weatherapi.com    
 STOCK_API_KEY : "demo"                      # API de test pour le producer stock
 KAFKA_BROKER : "kafka:29092"                # Adresse du serveur Kafka
 KAFKA_TOPIC : "weather_data"                # Nom du topic Kafka
 KAFKA_TOPIC_FINANCE : "stock_data"          # Nom du topic Kafka
-KAFKA_GROUP_ID : "weather_consumer_group"   # Nom de l'identifiant de groupe Kafka
+KAFKA_TOPIC_LOG : "log_data"                # Nom du topic Kafka
+LOG_API_KEY : "your_api_key"                # A retrouver sur ipinfo.io
 ```
 
 ### Producer Weather-Kafka-Streamlit

@@ -21,7 +21,7 @@ def get_ip_from_dns(domain: str) -> str:
 # Fonction pour obtenir les informations de localisation à partir de l'adresse IP
 def get_location_from_ip(ip):
     try:
-        response = requests.get(f"https://ipinfo.io/{ip}?token={API_KEY}")
+        response = requests.get(f"https://ipinfo.io/{ip}?token={LOG_API_KEY}")
         return response.json()
     except Exception as e:
         st.error(f"Erreur lors de la récupération de la localisation pour l'IP {ip}: {e}")
@@ -50,7 +50,7 @@ def fetch_data_from_dns(dns_address: str):
 # Kafka producer
 def produce_kafka_messages(dns_address):
     st.write(f'Broker = {KAFKA_BROKER}')
-    st.write(f'Topic = {KAFKA_TOPIC}')
+    st.write(f'Topic = {KAFKA_TOPIC_LOG}')
 
     producer = KafkaProducer(
         bootstrap_servers=[KAFKA_BROKER],
@@ -59,7 +59,7 @@ def produce_kafka_messages(dns_address):
     dns_data = fetch_data_from_dns(dns_address)
     if dns_data:
          # Send DNS data to Kafka topic
-        producer.send(KAFKA_TOPIC, dns_data)
+        producer.send(KAFKA_TOPIC_LOG, dns_data)
         st.write("DNS data produced to Kafka:", dns_data)
     # Wait 10 seconds before the next request
     time.sleep(10)

@@ -5,14 +5,14 @@ import streamlit as st
 def dashboard(dashboard_type: str):
     # Default settings
     st.set_page_config(
-        page_title="Real-time Weather Data App",
-        page_icon="⛅",
+        page_title="Domain name data retriever",
+        page_icon="",
         layout="wide",
         initial_sidebar_state="expanded"
     )
 
     # Run the Streamlit app
-    st.title(str.upper(dashboard_type) + " : Weather Data")
+    st.title(str.upper(dashboard_type) + " : Domain Name Data Retriever")
 
     # Add Logo
     st.sidebar.image("images/logo.png", width=250)
@@ -20,11 +20,11 @@ def dashboard(dashboard_type: str):
     # Sidebar with user instructions
     st.sidebar.markdown(
         """
-        This app fetches real-time weather data from Accuweather APIs.
+        This app fetches domain name data from IPinfo APIs.
         This produce messages to the Kafka topic and consume messages from the Kafka topic, 
         then displays real-time weather data from Kafka messages.
         """
     )
 
     # Display weather data in the main section
-    st.header("Real-Time Weather Data with Kafka + Streamlit")
+    st.header("Domain Name Data Retriever with Kafka + Streamlit")

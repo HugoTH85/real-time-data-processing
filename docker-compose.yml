@@ -1,6 +1,7 @@
 version: '3.8'  # Make sure to specify the version
 
 services:
+
   kafdrop:
     image: obsidiandynamics/kafdrop
     restart: "no"
@@ -96,6 +97,7 @@ services:
     networks:
       - localnet
       
+
   producer-stock: 
     build: 
       context: .
@@ -113,6 +115,8 @@ services:
       - ./Sink-Connectors/mongo-sink-stock.json:/tmp/mongo-sink-stock.json
     networks:
       - localnet
+
+
   producer-log:
     build: 
       context: .
@@ -175,6 +179,8 @@ services:
       - localnet
     depends_on:
       - prometheus
+
+
   prometheus:
     image: prom/prometheus
     container_name: prometheus

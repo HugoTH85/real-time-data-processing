@@ -6,7 +6,7 @@ def dashboard(dashboard_type: str):
     # Default settings
     st.set_page_config(
         page_title="Historic Finance Data App",
-        page_icon="$$",
+        page_icon="💲",
         layout="wide",
         initial_sidebar_state="expanded"
     )

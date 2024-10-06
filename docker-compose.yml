@@ -151,9 +151,9 @@ services:
     links:
       - prometheus
     volumes:
-      - ./grafana/datasources:/etc/grafana/provisioning/datasources
-      - ./grafana/dashboards:/etc/grafana/provisioning/dashboards
-      - ./Grafana_dashbord:/var/lib/grafana/dashboards
+      - ./Services/grafana/config/datasources:/etc/grafana/provisioning/datasources
+      - ./Services/grafana/config/dashboards:/etc/grafana/provisioning/dashboards
+      - ./Services/grafana/grafana_dashboards:/var/lib/grafana/dashboards
     networks:
       - localnet
     depends_on:
@@ -169,8 +169,7 @@ services:
     links:
       - mongo-exporter
     volumes:
-      - ./prometheus:/etc/prometheus
-      - prom_data:/prometheus
+      - ./Services/prometheus:/etc/prometheus
     networks:
       - localnet
 
@@ -184,12 +183,9 @@ services:
       - localnet
     volumes:
       - type: bind
-        source: ./elasticsearch/config/elasticsearch.yml
+        source: ./Services/elasticsearch/config/elasticsearch.yml
         target: /usr/share/elasticsearch/config/elasticsearch.yml
         read_only: true
-      - type: volume
-        source: elasticsearchdata
-        target: /opt/logstash-mongodb
   
   logstash:
     build: 
@@ -198,7 +194,7 @@ services:
     ports:
       - "5044:5044"
     volumes:
-      - ./logstash/conf/mongodb.conf:/usr/share/logstash/pipeline/logstash.conf
+      - ./Services/logstash/conf/mongodb.conf:/usr/share/logstash/pipeline/logstash.conf
     networks:
       - localnet
   
@@ -208,14 +204,14 @@ services:
     image: kibana:7.8.1
     container_name: kibana
     build:
-      context: kibana/
+      context: Services/kibana/
       args:
         ELK_VERSION: 7.6.2
     ports:
       - 5601:5601
     volumes:
       - type: bind
-        source: ./kibana/config/kibana.yml
+        source: ./Services/kibana/config/kibana.yml
         target: /usr/share/kibana/config/kibana.yml
         read_only: true
     networks:

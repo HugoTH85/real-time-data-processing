@@ -12,7 +12,7 @@ def dashboard(dashboard_type: str):
     )
 
     # Run the Streamlit app
-    st.title(str.upper(dashboard_type) + " : Weather Data")
+    st.title(str.upper(dashboard_type) + " : Historic Finance Data")
 
     # Add Logo
     st.sidebar.image("images/logo.png", width=250)

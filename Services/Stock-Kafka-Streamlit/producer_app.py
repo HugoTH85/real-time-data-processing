@@ -39,13 +39,11 @@ def produce_kafka_messages(date):
             # Send the message to Kafka
             producer.send(KAFKA_TOPIC_FINANCE, message)
 
-            # Optional: Log or display each message sent
-            st.write(f'Sent message for timestamp {timestamp}: {formatted_data}')
-
         st.write("Stock data produced to Kafka.")
 
     # Close the producer after sending all messages
     producer.close()
+return 1;
 
 
 if __name__ == '__main__':

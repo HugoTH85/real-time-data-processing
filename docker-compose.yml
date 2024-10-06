@@ -42,7 +42,7 @@ services:
   kafka-connect:
       build:
         context: .
-        dockerfile: DOCKERFILE/Kafka-Connect/Dockerfile
+        dockerfile: Dockerfiles/Kafka-Connect/Dockerfile
       ports:
         - "35000:35000"
       hostname: kafka-connect
@@ -81,7 +81,7 @@ services:
   producer:
     build: 
       context: .
-      dockerfile: DOCKERFILE/Producer/Dockerfile
+      dockerfile: Dockerfiles/Producer/Dockerfile
     restart: "no"
     depends_on:
       kibana:
@@ -99,7 +99,7 @@ services:
   producer-stock: 
     build: 
       context: .
-      dockerfile: DOCKERFILE/Producer-Stock/Dockerfile
+      dockerfile: Dockerfiles/Producer-Stock/Dockerfile
     restart: "no"
     depends_on:
       kibana:
@@ -190,7 +190,7 @@ services:
   logstash:
     build: 
       context: .
-      dockerfile: DOCKERFILE/LOGSTASH/Dockerfile
+      dockerfile: Dockerfiles/Logstash/Dockerfile
     ports:
       - "5044:5044"
     volumes:

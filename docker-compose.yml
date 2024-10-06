@@ -1,4 +1,5 @@
-version: "2"
+version: '3.8'  # Make sure to specify the version
+
 services:
   kafdrop:
     image: obsidiandynamics/kafdrop
@@ -9,6 +10,10 @@ services:
       KAFKA_BROKERCONNECT: "kafka:29092"
     depends_on:
       - "kafka"
+    networks:
+      - localnet
+
+
   kafka:
     image: obsidiandynamics/kafka
     restart: "no"
@@ -24,16 +29,58 @@ services:
       KAFKA_RESTART_ATTEMPTS: "10"
       KAFKA_RESTART_DELAY: "5"
       ZOOKEEPER_AUTOPURGE_PURGE_INTERVAL: "0"
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
     healthcheck:
       test: ["CMD", "nc", "-z", "localhost", "9092"]
       interval: 10s
       timeout: 5s
       retries: 5
+    networks:
+      - localnet
+
+
+  kafka-connect:
+      build:
+        context: .
+        dockerfile: DOCKERFILE/Kafka-Connect/Dockerfile
+      ports:
+        - "35000:35000"
+      hostname: kafka-connect
+      container_name: kafka-connect
+      user: root
+      privileged: true
+      environment:
+        KAFKA_JMX_PORT: 35000
+        KAFKA_JMX_HOSTNAME: localhost
+        CONNECT_BOOTSTRAP_SERVERS: kafka:29092
+        CONNECT_REST_ADVERTISED_HOST_NAME: kafka-connect
+        CONNECT_REST_PORT: 8083
+        CONNECT_GROUP_ID: connect-cluster-group
+        CONNECT_CONFIG_STORAGE_TOPIC: docker-connect-configs
+        CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR: 1
+        CONNECT_OFFSET_FLUSH_INTERVAL_MS: 10000
+        CONNECT_OFFSET_STORAGE_TOPIC: docker-connect-offsets
+        CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: 1
+        CONNECT_STATUS_STORAGE_TOPIC: docker-connect-status
+        CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: 1
+        CONNECT_ZOOKEEPER_CONNECT: "kafka:2181"
+        CONNECT_CONNECTIONS_MAX_IDLE_MS: 180000
+        CONNECT_METADATA_MAX_AGE_MS: 180000
+        CONNECT_AUTO_CREATE_TOPICS_ENABLE: "true"
+        CONNECT_KEY_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
+        CONNECT_VALUE_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
+      depends_on:
+        - kafka
+        - mongodb
+      networks:
+        - localnet
+      entrypoint: ["/bin/bash", "-c", "/etc/confluent/docker/run"]
+
 
   # Service Producteur Kafka
   producer:
     build: 
-      context: ./METEO_KAFKA_STREAMLIT
+      context: .
       dockerfile: DOCKERFILE/Producer/Dockerfile
     restart: "no"
     depends_on:
@@ -41,15 +88,127 @@ services:
     command: streamlit run producer_app.py --server.port 8501 --server.address 0.0.0.0  # Exécute producer_app.py
     ports:
       - "8501:8501"
+    volumes:
+      - ./Sink-Connectors/mongo-sink-weather.json:/tmp/mongo-sink-weather.json
+    networks:
+      - localnet
 
-  # Service Consommateur Kafka
-  consumer:
-    build: 
-      context: ./METEO_KAFKA_STREAMLIT
-      dockerfile: DOCKERFILE/Consumer/Dockerfile
-    restart: "no"
-    depends_on:
-      - kafka
-    command: streamlit run consumer_app.py --server.port 8502 --server.address 0.0.0.0  # Exécute consumer_app.py
+
+  
+  mongodb:
+    image: mongodb/mongodb-enterprise-server:5.0-ubuntu2004
+    restart: always
     ports:
-      - "8502:8502"
+      - "27017:27017"
+    networks:
+      - localnet
+    volumes:
+      - mongodbdata:/data/db
+
+
+  mongo-exporter:
+    image: 'percona/mongodb_exporter:0.40.0'
+    environment:
+      MONGODB_URI: mongodb://mongodb:27017/kafka_topics
+    command: ["--collect-all", "--compatible-mode", "--discovering-mode"]
+    ports:
+      - 9216:9216
+    networks:
+      - localnet
+
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - 3000:3000
+    restart: unless-stopped
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=grafana
+      - GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource
+    links:
+      - prometheus
+    volumes:
+      - ./grafana/datasources:/etc/grafana/provisioning/datasources
+      - ./grafana/dashboards:/etc/grafana/provisioning/dashboards
+      - ./Grafana_dashbord:/var/lib/grafana/dashboards
+    networks:
+      - localnet
+    depends_on:
+      - prometheus
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+    ports:
+      - 9090:9090
+    restart: unless-stopped
+    links:
+      - mongo-exporter
+    volumes:
+      - ./prometheus:/etc/prometheus
+      - prom_data:/prometheus
+    networks:
+      - localnet
+
+  elasticsearch:
+    image: elasticsearch:7.10.1
+    environment:
+      - discovery.type=single-node
+    ports:
+      - "9200:9200"
+    networks:
+      - localnet
+    volumes:
+      - type: bind
+        source: ./elasticsearch/config/elasticsearch.yml
+        target: /usr/share/elasticsearch/config/elasticsearch.yml
+        read_only: true
+      - type: volume
+        source: elasticsearchdata
+        target: /opt/logstash-mongodb
+  
+  logstash:
+    build: 
+      context: .
+      dockerfile: DOCKERFILE/LOGSTASH/Dockerfile
+    ports:
+      - "5044:5044"
+    volumes:
+      - ./logstash/conf/mongodb.conf:/usr/share/logstash/pipeline/logstash.conf
+    networks:
+      - localnet
+  
+  kibana:
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elastic:elasticpass@elasticsearch:9200
+    image: kibana:7.8.1
+    container_name: kibana
+    build:
+      context: kibana/
+      args:
+        ELK_VERSION: 7.6.2
+    ports:
+      - 5601:5601
+    volumes:
+      - type: bind
+        source: ./kibana/config/kibana.yml
+        target: /usr/share/kibana/config/kibana.yml
+        read_only: true
+    networks:
+      - localnet
+    depends_on:
+      - elasticsearch
+
+networks:
+  localnet:
+    driver: bridge
+    attachable: true
+  
+
+volumes:
+  mongodbdata:
+  elasticsearchdata:
+  prom_data:

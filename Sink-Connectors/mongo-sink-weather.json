@@ -1,0 +1,13 @@
+{
+  "name": "mongo-sink-weather-connector",
+  "config": {
+    "connector.class": "com.mongodb.kafka.connect.MongoSinkConnector",
+    "topics": "weather_data", 
+    "connection.uri": "mongodb://mongodb",
+    "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter.schemas.enable": "false",
+    "database": "kafka_topics",
+    "collection": "weather_data"
+  }
+}

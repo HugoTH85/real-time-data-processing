@@ -7,7 +7,7 @@
       "updated_at": "2024-10-05T17:26:44.221Z",
       "version": "WzY2LDRd",
       "attributes": {
-        "title": "test2",
+        "title": "Weather data dashboard",
         "hits": 0,
         "description": "",
         "panelsJSON": "[{\"version\":\"7.6.2\",\"gridData\":{\"w\":24,\"h\":15,\"x\":0,\"y\":0,\"i\":\"fc951487-3a40-4217-9184-987b4d67fc80\"},\"panelIndex\":\"fc951487-3a40-4217-9184-987b4d67fc80\",\"embeddableConfig\":{},\"panelRefName\":\"panel_0\"}]",

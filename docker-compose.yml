@@ -84,8 +84,11 @@ services:
       dockerfile: DOCKERFILE/Producer/Dockerfile
     restart: "no"
     depends_on:
-      - kafka
-    command: streamlit run producer_app.py --server.port 8501 --server.address 0.0.0.0  # Exécute producer_app.py
+      kibana:
+        condition: service_healthy
+      kafka:
+        condition: service_started
+    command: sh -c "python kibana.py & streamlit run producer_app.py --server.port 8501 --server.address 0.0.0.0"
     ports:
       - "8501:8501"
     volumes:
@@ -199,6 +202,12 @@ services:
         read_only: true
     networks:
       - localnet
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5601"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
     depends_on:
       - elasticsearch
 

@@ -10,6 +10,8 @@ WORKDIR /app
 # Copier uniquement les fichiers Python dans le répertoire de travail
 COPY ./Services/Weather-Kafka-Streamlit/*.py /app/
 
+COPY ./Services/Weather-Kafka-Streamlit/Dashboard /app/Dashboard
+
 # Copier le dossier images dans le répertoire de travail
 COPY ./images /app/images/
 

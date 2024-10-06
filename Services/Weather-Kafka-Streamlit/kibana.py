@@ -4,7 +4,7 @@ import json
 
 
 # URL de l'API Kibana
-kibana_url = 'http://localhost:5601'  
+kibana_url = 'http://kibana:5601'
 
 headers = {
     'kbn-xsrf': 'true',
